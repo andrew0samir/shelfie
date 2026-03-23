@@ -6,7 +6,7 @@ const About = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
   return (
-    <View style={[styles.container] , {backgroundColor : theme.background}}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <Text style={styles.title}>About Page</Text>
       <Link href="/"> Back Home </Link>
     </View>
