@@ -12,10 +12,13 @@ import ThemedText from "../../components/ThemedText";
 import ThemedTextInput from "../../components/ThemedTextInput";
 import ThemedView from "../../components/ThemedView";
 import { Colors } from "../../constants/Colors";
+import { useUser } from "../../hooks/useUser";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { user } = useUser();
 
   const handleSubmit = () => {
     console.log("login form submited", email, password);
