@@ -67,6 +67,12 @@ const Login = () => {
             Register insted
           </ThemedText>
         </Link>
+
+        <Spacer height={100} />
+        <Link href="/">
+          <ThemedText>Back Home</ThemedText>
+        </Link>
+        
       </ThemedView>
     </TouchableWithoutFeedback>
   );
