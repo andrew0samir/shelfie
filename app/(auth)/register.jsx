@@ -11,13 +11,18 @@ import ThemedButton from "../../components/ThemedButton";
 import ThemedText from "../../components/ThemedText";
 import ThemedTextInput from "../../components/ThemedTextInput";
 import ThemedView from "../../components/ThemedView";
+import { useUser } from "../../hooks/useUser";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    console.log("register form submited", email, password);
+  const { register } = useUser();
+
+  const handleSubmit = async () => {
+    try {
+      await register(email, password);
+    } catch (error) {}
   };
 
   return (
