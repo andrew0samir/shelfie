@@ -25,7 +25,10 @@ export function UserProvider({ children }) {
       throw Error(error.message);
     }
   }
-  async function logout() {}
+  async function logout() {
+    await account.deleteSession("current");
+    setUser(null);
+  }
 
   return (
     <userContext.Provider value={{ user, login, register, logout }}>
