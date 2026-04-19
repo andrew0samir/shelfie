@@ -72,7 +72,6 @@ const Login = () => {
         <Link href="/">
           <ThemedText>Back Home</ThemedText>
         </Link>
-        
       </ThemedView>
     </TouchableWithoutFeedback>
   );
