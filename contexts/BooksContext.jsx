@@ -1,4 +1,7 @@
 import { createContext, useState } from "react";
+import { databases } from "../lib/appwrite";
+import { ID, Permission, Role } from "react-native-appwrite";
+import { useUser } from "../hooks/useUser";
 
 const { EXPO_PUBLIC_APPWRITE_DATABASE_ID, EXPO_PUBLIC_APPWRITE_TABLE_ID } =
   process.env;
@@ -7,6 +10,7 @@ export const BooksContext = createContext();
 
 export function BooksProvider({ children }) {
   const [books, setBooks] = useState([]);
+  const { user } = useUser();
 
   async function fetchBooks() {
     try {
@@ -24,6 +28,17 @@ export function BooksProvider({ children }) {
 
   async function createBook(data) {
     try {
+      const newBook = await databases.createDocument(
+        EXPO_PUBLIC_APPWRITE_DATABASE_ID,
+        EXPO_PUBLIC_APPWRITE_TABLE_ID,
+        ID.unique(),
+        { ...data, userId: user.$id },
+        [
+          Permission.read(Role.user(user.$id)),
+          Permission.update(Role.user(user.$id)),
+          Permission.delete(Role.user(user.$id)),
+        ],
+      );
     } catch (error) {
       console.error(error.message);
     }
