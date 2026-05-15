@@ -15,7 +15,7 @@ export function BooksProvider({ children }) {
   async function fetchBooks() {
     try {
       const response = await databases.listDocuments(
-        XPO_PUBLIC_APPWRITE_DATABASE_ID,
+        EXPO_PUBLIC_APPWRITE_DATABASE_ID,
         EXPO_PUBLIC_APPWRITE_TABLE_ID,
         [Query.equal("userId", user.$id)],
       );
@@ -27,6 +27,12 @@ export function BooksProvider({ children }) {
 
   async function fetchBookById(id) {
     try {
+      const response = await databases.getDocument(
+        EXPO_PUBLIC_APPWRITE_DATABASE_ID,
+        EXPO_PUBLIC_APPWRITE_TABLE_ID,
+        id,
+      );
+      return response;
     } catch (error) {
       console.error(error.message);
     }
